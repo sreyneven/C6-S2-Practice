@@ -1,8 +1,8 @@
 <template>
   <section>
     <friendNav></friendNav>
-    <friendForm></friendForm>
-    <friendCard></friendCard>
+    <friendForm @users = "addUser"></friendForm>
+    <friendCard v-for:="user in users" :key = "user.id" :friend = "user"></friendCard>
   </section>
 </template>
 
@@ -17,7 +17,17 @@ export default {
   friendCard,
   friendNav,
   friendForm,
- } 
+ } ,
+ data() {
+  return {
+    users: [{firstname: "sreyne", lastname: "ven", comment: "Ugly girl"}, ],
+  }
+ },
+ methods: {
+    addUser(firstname, lastname, comment) {
+      this.users.push({firstname: firstname, lastname: lastname, comment: comment})
+    }
+  }
 }
 </script>
 
